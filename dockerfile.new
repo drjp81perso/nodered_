@@ -4,6 +4,7 @@ RUN apk update
 RUN apk upgrade
 RUN apk add curl npm nodejs
 RUN mkdir /app
+RUN mkdir /data
 WORKDIR /app
 RUN npm install -g --unsafe-perm node-red \
 && apk cache clean
