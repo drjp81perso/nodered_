@@ -1,9 +1,11 @@
-FROM debian:sid-slim
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get install -y curl npm nodejs
+FROM alpine:latest
+USER root
+RUN apk update
+RUN apk upgrade
+RUN apk add curl npm nodejs
 RUN mkdir /app
 WORKDIR /app
-RUN npm install -g --unsafe-perm node-red
-CMD [ "node-red" ]
+RUN npm install -g --unsafe-perm node-red \
+&& apk cache clean
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ "curl", "-f", "http://localhost:1880" ]
+CMD [ "node-red" , "--userDir", "/data"]
