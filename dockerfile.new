@@ -1,0 +1,9 @@
+FROM debian:sid-slim
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y curl npm nodejs
+RUN mkdir /app
+WORKDIR /app
+RUN npm install -g --unsafe-perm node-red
+CMD [ "node-red" ]
