@@ -1,5 +1,8 @@
-if ($env:GITHUB_REF_NAME -eq "master") {
-    $env:GITHUB_REF_NAME = "main"
+if ($env:GITHUB_REF_NAME -eq "main") {
+    $env:GITHUB_REF_NAME = "latest"
+}
+if ($env:GITHUB_REF_NAME -ilike "*/*") {
+   exit 0
 }
 
 Set-Location $PSScriptRoot
