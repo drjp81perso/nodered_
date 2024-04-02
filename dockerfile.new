@@ -2,7 +2,7 @@ FROM alpine:latest
 USER root
 RUN apk update
 RUN apk upgrade
-RUN apk add curl npm nodejs
+RUN apk add curl npm nodejs ffmpeg
 RUN mkdir /app
 RUN mkdir /data
 WORKDIR /app
